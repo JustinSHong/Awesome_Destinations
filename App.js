@@ -28,7 +28,13 @@ export default class App extends Component {
 		const { places } = this.state;
 
 		this.setState(() => ({
-			places: places.concat({ key: Math.random().toString(), value: placeName })
+			places: places.concat({
+				key: Math.random().toString(),
+				value: placeName,
+				image: {
+					uri: "https://c1.staticflickr.com/5/4096/4744241983_34023bf303_b.jpg"
+				}
+			})
 		}));
 	};
 
