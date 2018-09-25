@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, TextInput, Button, StyleSheet } from "react-native";
 
 // renders the input form
 class DestinationForm extends Component {
@@ -27,21 +27,37 @@ class DestinationForm extends Component {
 	render() {
 		const { placeName } = this.state;
 		return (
-			<View>
+			<View style={styles.inputContainer}>
 				<TextInput
-					// style={styles.placeInput}
+					style={styles.input}
 					placeholder="An awesome place"
 					value={placeName}
 					onChangeText={this.handleInputChange}
 				/>
 				<Button
 					title="Add"
-					// style={styles.placeButton}
+					style={styles.button}
 					onPress={this.handleSubmitPlace}
 				/>
 			</View>
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	inputContainer: {
+		width: "100%",
+		padding: 10,
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between"
+	},
+	input: {
+		width: "70%"
+	},
+	button: {
+		width: "30%"
+	}
+});
 
 export default DestinationForm;
