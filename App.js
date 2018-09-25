@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Constants } from "expo";
 import DestinationList from "./components/DestinationList";
+import DestinationForm from "./components/DestinationForm";
 
 function AwesomeStatusBar({ backgroundColor, ...props }) {
 	return (
@@ -24,27 +25,13 @@ function AwesomeStatusBar({ backgroundColor, ...props }) {
 
 export default class App extends Component {
 	state = {
-		placeName: "",
 		places: []
 	};
 
-	// save input changes to state
-	handleInputChange = val => {
-		this.setState(() => ({
-			placeName: val
-		}));
-	};
+	handleAddPlace = placeName => {
+		const { places } = this.state;
 
-	// save a place to state
-	handleSubmitPlace = () => {
-		const { placeName, places } = this.state;
-		if (placeName.trim() === "") {
-			return;
-		}
-
-		this.setState(() => ({
-			places: places.concat(placeName)
-		}));
+		this.setState(() => ({ places: places.concat(placeName) }));
 	};
 
 	render() {
@@ -53,17 +40,7 @@ export default class App extends Component {
 			<View style={styles.container}>
 				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
 				<View style={styles.inputContainer}>
-					<TextInput
-						style={styles.placeInput}
-						placeholder="An awesome place"
-						value={this.state.placeName}
-						onChangeText={this.handleInputChange}
-					/>
-					<Button
-						title="Add"
-						style={styles.placeButton}
-						onPress={this.handleSubmitPlace}
-					/>
+					<DestinationForm addPlace={this.handleAddPlace} />
 				</View>
 				<DestinationList places={places} />
 			</View>

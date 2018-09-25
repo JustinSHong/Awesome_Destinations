@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, TextInput, Button } from "react-native";
 
 // renders the input form
 class DestinationForm extends Component {
@@ -21,9 +21,7 @@ class DestinationForm extends Component {
 			return;
 		}
 
-		this.setState(() => ({
-			places: places.concat(placeName)
-		}));
+		this.props.addPlace(placeName);
 	};
 
 	render() {
@@ -31,14 +29,14 @@ class DestinationForm extends Component {
 		return (
 			<View>
 				<TextInput
-					style={styles.placeInput}
+					// style={styles.placeInput}
 					placeholder="An awesome place"
 					value={placeName}
 					onChangeText={this.handleInputChange}
 				/>
 				<Button
 					title="Add"
-					style={styles.placeButton}
+					// style={styles.placeButton}
 					onPress={this.handleSubmitPlace}
 				/>
 			</View>

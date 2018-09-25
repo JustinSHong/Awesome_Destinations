@@ -5,7 +5,7 @@ import { View, Text, FlatList } from "react-native";
 const ListItem = ({ place }) => {
 	return (
 		<View>
-			<Text>{place.name}</Text>
+			<Text>{place}</Text>
 		</View>
 	);
 };

@@ -6,7 +6,7 @@ import ListItem from "./ListItem";
 const DestinationList = ({ places }) => {
 	return (
 		<View>
-			{places.map((places, index) => <ListItem key={index} place={place} />)}
+			{places.map((place, index) => <ListItem key={index} place={place} />)}
 		</View>
 	);
 };
