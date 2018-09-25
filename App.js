@@ -9,24 +9,31 @@ export default class App extends Component {
 	// save input changes to state
 	handleInputChange = val => {
 		this.setState(() => ({
-			placeName: val
+			placeName: val,
+			places: []
 		}));
 	};
 
 	render() {
+		const { placeName, places } = this.state;
 		return (
 			<View style={styles.container}>
-				<TextInput
-					style={{ width: 300 }}
-					placeholder="An awesome place"
-					value={this.state.placeName}
-					onChangeText={this.handleInputChange}
-				/>
-				<Button
-					title="Add"
-					style={styles.placeButton}
-					onPress={this.handleSubmitPlace}
-				/>
+				<View style={styles.inputContainer}>
+					<TextInput
+						style={{ width: 300 }}
+						placeholder="An awesome place"
+						value={this.state.placeName}
+						onChangeText={this.handleInputChange}
+					/>
+					<Button
+						title="Add"
+						style={styles.placeButton}
+						onPress={this.handleSubmitPlace}
+					/>
+				</View>
+				<View style={styles.listContainer}>
+					{places.map((place, i) => <ListItem key={i} placeName={place} />)}
+				</View>
 			</View>
 		);
 	}
