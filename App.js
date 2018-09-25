@@ -27,7 +27,9 @@ export default class App extends Component {
 	handleAddPlace = placeName => {
 		const { places } = this.state;
 
-		this.setState(() => ({ places: places.concat(placeName) }));
+		this.setState(() => ({
+			places: places.concat({ key: Math.random().toString(), value: placeName })
+		}));
 	};
 
 	// delete a place
@@ -36,7 +38,7 @@ export default class App extends Component {
 
 		this.setState(() => ({
 			places: places.filter((p, i) => {
-				return i !== index;
+				return i !== parseInt(index, 10);
 			})
 		}));
 	};

@@ -5,15 +5,16 @@ import ListItem from "./ListItem";
 // renders a list of destinations
 const DestinationList = ({ places, deletePlace }) => {
 	return (
-		<View style={styles.listContainer}>
-			{places.map((place, index) => (
+		<FlatList
+			style={styles.listContainer}
+			data={places}
+			renderItem={({ item }) => (
 				<ListItem
-					key={index}
-					place={place}
-					onItemPressed={() => deletePlace(index)}
+					place={item.value}
+					onItemPressed={() => deletePlace(item.key)}
 				/>
-			))}
-		</View>
+			)}
+		/>
 	);
 };
 
