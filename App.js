@@ -5,6 +5,14 @@ export default class App extends Component {
 	state = {
 		placeName: ""
 	};
+
+	// save input changes to state
+	handleInputChange = val => {
+		this.setState(() => ({
+			placeName: val
+		}));
+	};
+
 	render() {
 		return (
 			<View style={styles.container}>
