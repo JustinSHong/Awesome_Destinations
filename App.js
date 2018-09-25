@@ -10,6 +10,7 @@ import {
 import { Constants } from "expo";
 import DestinationList from "./components/DestinationList";
 import DestinationForm from "./components/DestinationForm";
+import SelectedPlace from "./components/SelectedPlace";
 
 function AwesomeStatusBar({ backgroundColor, ...props }) {
 	return (
@@ -21,7 +22,8 @@ function AwesomeStatusBar({ backgroundColor, ...props }) {
 
 export default class App extends Component {
 	state = {
-		places: []
+		places: [],
+		selectedPlace: null // holds the place object the user clicks on
 	};
 
 	handleAddPlace = placeName => {
@@ -50,11 +52,16 @@ export default class App extends Component {
 	};
 
 	render() {
-		const { placeName, places } = this.state;
+		const { placeName, places, selectedPlace } = this.state;
 
 		return (
 			<View style={styles.container}>
 				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
+				<SelectedPlace
+					selectedPlace={selectedPlace}
+					onItemDeleted={this.handleDeletePlace}
+					onModalClosed={this.handleCloseModal}
+				/>
 				<DestinationForm addPlace={this.handleAddPlace} />
 				<DestinationList places={places} deletePlace={this.handleDeletePlace} />
 			</View>
