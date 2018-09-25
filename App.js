@@ -59,6 +59,16 @@ export default class App extends Component {
 		}));
 	};
 
+	// save a selected place
+	handleSelectPlace = key => {
+		const { places } = this.state;
+		this.setState(() => ({
+			selectedPlace: places.find(p => {
+				return p.key === key;
+			})
+		}));
+	};
+
 	render() {
 		const { placeName, places, selectedPlace } = this.state;
 
@@ -71,7 +81,11 @@ export default class App extends Component {
 					onModalClosed={this.handleCloseModal}
 				/>
 				<DestinationForm addPlace={this.handleAddPlace} />
-				<DestinationList places={places} deletePlace={this.handleDeletePlace} />
+				<DestinationList
+					places={places}
+					deletePlace={this.handleDeletePlace}
+					selectPlace={this.handleSelectPlace}
+				/>
 			</View>
 		);
 	}
