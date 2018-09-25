@@ -32,7 +32,7 @@ export default class App extends Component {
 			<View style={styles.container}>
 				<View style={styles.inputContainer}>
 					<TextInput
-						style={{ width: 300 }}
+						style={styles.placeInput}
 						placeholder="An awesome place"
 						value={this.state.placeName}
 						onChangeText={this.handleInputChange}
@@ -54,8 +54,25 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		padding: 26,
 		backgroundColor: "#fff",
 		alignItems: "center",
 		justifyContent: "center"
+	},
+	inputContainer: {
+		// flex: 1,
+		width: "100%",
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center"
+	},
+	placeInput: {
+		width: "70%"
+	},
+	placeButton: {
+		width: "30%"
+	},
+	listContainer: {
+		width: "100%"
 	}
 });
