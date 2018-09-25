@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 		padding: 26,
 		backgroundColor: "#fff",
 		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "flex-start"
 	},
 	inputContainer: {
 		// flex: 1,
