@@ -8,6 +8,7 @@ import {
 	StatusBar
 } from "react-native";
 import { Constants } from "expo";
+import DestinationList from "./components/DestinationList";
 
 function AwesomeStatusBar({ backgroundColor, ...props }) {
 	return (
@@ -64,9 +65,7 @@ export default class App extends Component {
 						onPress={this.handleSubmitPlace}
 					/>
 				</View>
-				<View style={styles.listContainer}>
-					{places.map((place, i) => <ListItem key={i} placeName={place} />)}
-				</View>
+				<DestinationList places={places} />
 			</View>
 		);
 	}
