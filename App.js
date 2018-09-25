@@ -3,14 +3,26 @@ import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export default class App extends Component {
 	state = {
-		placeName: ""
+		placeName: "",
+		places: []
 	};
 
 	// save input changes to state
 	handleInputChange = val => {
 		this.setState(() => ({
-			placeName: val,
-			places: []
+			placeName: val
+		}));
+	};
+
+	// save a place to state
+	handleSubmitPlace = () => {
+		const { placeName, places } = this.state;
+		if (placeName.trim() === "") {
+			return;
+		}
+
+		this.setState(() => ({
+			places: places.concat(placeName)
 		}));
 	};
 
