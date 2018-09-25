@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 
 export default class App extends Component {
 	state = {
@@ -21,6 +21,11 @@ export default class App extends Component {
 					placeholder="An awesome place"
 					value={this.state.placeName}
 					onChangeText={this.handleInputChange}
+				/>
+				<Button
+					title="Add"
+					style={styles.placeButton}
+					onPress={this.handleSubmitPlace}
 				/>
 			</View>
 		);
