@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
 // renders place image and text
-const ListItem = ({ place }) => {
+const ListItem = ({ place, onItemPressed }) => {
 	return (
-		<View>
-			<Text>{place}</Text>
-		</View>
+		<TouchableOpacity onPress={onItemPressed}>
+			<View>
+				<Text>{place}</Text>
+			</View>
+		</TouchableOpacity>
 	);
 };
 

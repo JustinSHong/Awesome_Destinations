@@ -30,6 +30,17 @@ export default class App extends Component {
 		this.setState(() => ({ places: places.concat(placeName) }));
 	};
 
+	// delete a place
+	handleDeletePlace = index => {
+		const { places } = this.state;
+
+		this.setState(() => ({
+			places: places.filter((p, i) => {
+				return i !== index;
+			})
+		}));
+	};
+
 	render() {
 		const { placeName, places } = this.state;
 
@@ -37,7 +48,7 @@ export default class App extends Component {
 			<View style={styles.container}>
 				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
 				<DestinationForm addPlace={this.handleAddPlace} />
-				<DestinationList places={places} />
+				<DestinationList places={places} deletePlace={this.handleDeletePlace} />
 			</View>
 		);
 	}

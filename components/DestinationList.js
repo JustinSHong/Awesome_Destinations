@@ -3,10 +3,16 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import ListItem from "./ListItem";
 
 // renders a list of destinations
-const DestinationList = ({ places }) => {
+const DestinationList = ({ places, deletePlace }) => {
 	return (
 		<View style={styles.listContainer}>
-			{places.map((place, index) => <ListItem key={index} place={place} />)}
+			{places.map((place, index) => (
+				<ListItem
+					key={index}
+					place={place}
+					onItemPressed={() => deletePlace(index)}
+				/>
+			))}
 		</View>
 	);
 };
