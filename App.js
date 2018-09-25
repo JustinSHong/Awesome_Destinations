@@ -52,6 +52,13 @@ export default class App extends Component {
 		}));
 	};
 
+	// close modal
+	handleCloseModal = () => {
+		this.setState(() => ({
+			selectedPlace: null
+		}));
+	};
+
 	render() {
 		const { placeName, places, selectedPlace } = this.state;
 
