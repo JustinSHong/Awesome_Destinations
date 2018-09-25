@@ -47,7 +47,8 @@ export default class App extends Component {
 		this.setState(() => ({
 			places: places.filter((p, i) => {
 				return i !== parseInt(index, 10);
-			})
+			}),
+			selectedPlace: null
 		}));
 	};
 
