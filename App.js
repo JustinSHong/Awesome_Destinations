@@ -14,11 +14,7 @@ import DestinationForm from "./components/DestinationForm";
 function AwesomeStatusBar({ backgroundColor, ...props }) {
 	return (
 		<View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-			<StatusBar
-				// translucent={false}
-				backgroundColor={backgroundColor}
-				{...props}
-			/>
+			<StatusBar translucent backgroundColor={backgroundColor} {...props} />
 		</View>
 	);
 }
@@ -36,12 +32,11 @@ export default class App extends Component {
 
 	render() {
 		const { placeName, places } = this.state;
+
 		return (
 			<View style={styles.container}>
 				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
-				<View style={styles.inputContainer}>
-					<DestinationForm addPlace={this.handleAddPlace} />
-				</View>
+				<DestinationForm addPlace={this.handleAddPlace} />
 				<DestinationList places={places} />
 			</View>
 		);
@@ -51,24 +46,5 @@ export default class App extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1
-		// padding: 26,
-		// backgroundColor: "",
-		// alignItems: "center",
-		// justifyContent: "flex-start"
-	},
-	inputContainer: {
-		width: "100%",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center"
-	},
-	placeInput: {
-		width: "70%"
-	},
-	placeButton: {
-		width: "30%"
-	},
-	listContainer: {
-		width: "100%"
 	}
 });
