@@ -1,5 +1,25 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	TextInput,
+	Button,
+	StatusBar
+} from "react-native";
+import { Constants } from "expo";
+
+function AwesomeStatusBar({ backgroundColor, ...props }) {
+	return (
+		<View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+			<StatusBar
+				// translucent={false}
+				backgroundColor={backgroundColor}
+				{...props}
+			/>
+		</View>
+	);
+}
 
 export default class App extends Component {
 	state = {
@@ -30,6 +50,7 @@ export default class App extends Component {
 		const { placeName, places } = this.state;
 		return (
 			<View style={styles.container}>
+				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
 				<View style={styles.inputContainer}>
 					<TextInput
 						style={styles.placeInput}
@@ -53,14 +74,13 @@ export default class App extends Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
-		padding: 26,
-		backgroundColor: "#fff",
-		alignItems: "center",
-		justifyContent: "flex-start"
+		flex: 1
+		// padding: 26,
+		// backgroundColor: "",
+		// alignItems: "center",
+		// justifyContent: "flex-start"
 	},
 	inputContainer: {
-		// flex: 1,
 		width: "100%",
 		flexDirection: "row",
 		justifyContent: "space-between",
