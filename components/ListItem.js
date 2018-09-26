@@ -12,13 +12,8 @@ import {
 const ListItem = ({ place, onItemPressed }) => {
 	return (
 		<TouchableOpacity style={styles.placeContainer} onPress={onItemPressed}>
-			<Image
-				style={styles.image}
-				source={{
-					uri: "https://c1.staticflickr.com/5/4096/4744241983_34023bf303_b.jpg"
-				}}
-			/>
-			<Text>{place}</Text>
+			<Image style={styles.image} source={place.image} />
+			<Text>{place.value}</Text>
 		</TouchableOpacity>
 	);
 };

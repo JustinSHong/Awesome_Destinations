@@ -3,16 +3,13 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import ListItem from "./ListItem";
 
 // renders a list of destinations
-const DestinationList = ({ places, deletePlace }) => {
+const DestinationList = ({ places, deletePlace, selectPlace }) => {
 	return (
 		<FlatList
 			style={styles.listContainer}
 			data={places}
 			renderItem={({ item }) => (
-				<ListItem
-					place={item.value}
-					onItemPressed={() => deletePlace(item.key)}
-				/>
+				<ListItem place={item} onItemPressed={() => selectPlace(item)} />
 			)}
 		/>
 	);
