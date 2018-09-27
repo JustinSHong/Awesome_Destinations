@@ -9,7 +9,7 @@ const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 		modalContent = (
 			<View>
 				<Image style={styles.placeImage} source={selectedPlace.image} />
-				<Text>{selectedPlace.value}</Text>
+				<Text style={styles.placeName}>{selectedPlace.value}</Text>
 			</View>
 		);
 	}
@@ -21,7 +21,7 @@ const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 			visible={selectedPlace !== null}
 			onRequestClose={onModalClosed}
 		>
-			<View>
+			<View style={styles.modalContent}>
 				{modalContent}
 				<View>
 					<Button title="Delete" color="red" onPress={onItemDeleted} />
@@ -33,9 +33,17 @@ const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 };
 
 const styles = StyleSheet.create({
+	modalContent: {
+		margin: 20
+	},
 	placeImage: {
 		height: 100,
-		width: 100
+		width: "100%"
+	},
+	placeName: {
+		fontSize: 24,
+		textAlign: "center",
+		fontWeight: "bold"
 	}
 });
 
