@@ -9,7 +9,7 @@ const DestinationList = ({ places, deletePlace, selectPlace }) => {
 			style={styles.listContainer}
 			data={places}
 			renderItem={({ item }) => (
-				<ListItem place={item} onItemPressed={() => selectPlace(item)} />
+				<ListItem place={item} onItemPressed={() => selectPlace(item.key)} />
 			)}
 		/>
 	);
