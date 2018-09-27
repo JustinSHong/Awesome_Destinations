@@ -41,12 +41,12 @@ export default class App extends Component {
 	};
 
 	// delete a place
-	handleDeletePlace = index => {
-		const { places } = this.state;
+	handleDeletePlace = () => {
+		const { places, selectedPlace } = this.state;
 
 		this.setState(() => ({
-			places: places.filter((p, i) => {
-				return i !== parseInt(index, 10);
+			places: places.filter(p => {
+				return p.key !== selectedPlace.key;
 			}),
 			selectedPlace: null
 		}));
