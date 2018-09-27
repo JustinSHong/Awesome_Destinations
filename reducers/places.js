@@ -31,5 +31,12 @@ const placesReducer = (state = initialState, action) => {
 					return p.key !== state.selectedPlace.key;
 				})
 			};
+		case SELECT_PLACE:
+			return {
+				...state,
+				selectedPlace: state.places.find(place => {
+					return place.key === action.key;
+				})
+			};
 	}
 };
