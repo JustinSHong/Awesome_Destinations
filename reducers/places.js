@@ -38,5 +38,9 @@ const placesReducer = (state = initialState, action) => {
 					return place.key === action.key;
 				})
 			};
+		default:
+			return state;
 	}
 };
+
+export default placesReducer;
