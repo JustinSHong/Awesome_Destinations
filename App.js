@@ -9,7 +9,16 @@ import {
 } from "react-native";
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
+// actions
+import {
+	addPlace,
+	deletePlace,
+	selectPlace,
+	deselectPlace
+} from "./actions/index";
+// reducers
 import placesReducer from "./reducers/places";
+// components
 import AwesomeStatusBar from "./components/AwesomeStatusBar";
 import DestinationList from "./components/DestinationList";
 import DestinationForm from "./components/DestinationForm";
@@ -104,3 +113,12 @@ const styles = StyleSheet.create({
 		flex: 1
 	}
 });
+
+const mapStateToProps = state => {
+	const { places, selectedPlace } = state.places;
+
+	return {
+		places: places,
+		selectedPlace: selectedPlace
+	};
+};
