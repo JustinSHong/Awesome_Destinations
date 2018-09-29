@@ -8,7 +8,7 @@ import {
 	StatusBar
 } from "react-native";
 import { createStore, combineReducers } from "redux";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 // actions
 import {
 	addPlace,
@@ -32,7 +32,7 @@ const rootReducer = combineReducers({
 // create store
 const store = createStore(rootReducer);
 
-export default class App extends Component {
+class App extends Component {
 	state = {
 		places: [],
 		selectedPlace: null // holds the place object the user clicks on
@@ -131,3 +131,5 @@ const mapDispatchToProps = dispatch => {
 		deselectPlace: () => dispatch(deselectPlace())
 	};
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
