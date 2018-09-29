@@ -13,7 +13,7 @@ const ListItem = ({ place, onItemPressed }) => {
 	return (
 		<TouchableOpacity style={styles.placeContainer} onPress={onItemPressed}>
 			<Image style={styles.image} source={place.image} />
-			<Text>{place.value}</Text>
+			<Text>{place.name}</Text>
 		</TouchableOpacity>
 	);
 };
