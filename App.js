@@ -122,3 +122,12 @@ const mapStateToProps = state => {
 		selectedPlace: selectedPlace
 	};
 };
+
+const mapDispatchToProps = dispatch => {
+	return {
+		addPlace: placeName => dispatch(addPlace(placeName)),
+		deletePlace: () => dispatch(deletePlace()),
+		selectPlace: key => dispatch(selectedPlace(key)),
+		deselectPlace: () => dispatch(deselectPlace())
+	};
+};
