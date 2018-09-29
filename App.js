@@ -7,10 +7,20 @@ import {
 	Button,
 	StatusBar
 } from "react-native";
+import { createStore, combineReducers } from "redux";
 import { Constants } from "expo";
+import placesReducer from "./reducers/places";
 import DestinationList from "./components/DestinationList";
 import DestinationForm from "./components/DestinationForm";
 import SelectedPlace from "./components/SelectedPlace";
+
+// combine reducers into one root reducer
+const rootReducer = combineReducers({
+	places: placesReducer
+});
+
+// create store
+const store = createStore(rootReducer);
 
 function AwesomeStatusBar({ backgroundColor, ...props }) {
 	return (
