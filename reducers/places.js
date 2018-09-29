@@ -16,7 +16,7 @@ const placesReducer = (state = initialState, action) => {
 			return {
 				...state,
 				places: state.places.concat({
-					key: Math.random(),
+					key: Math.random().toString(),
 					name: action.placeName,
 					image: {
 						uri:
@@ -29,7 +29,8 @@ const placesReducer = (state = initialState, action) => {
 				...state,
 				places: state.places.filter(p => {
 					return p.key !== state.selectedPlace.key;
-				})
+				}),
+				selectedPlace: null
 			};
 		case SELECT_PLACE:
 			return {
@@ -37,6 +38,11 @@ const placesReducer = (state = initialState, action) => {
 				selectedPlace: state.places.find(place => {
 					return place.key === action.key;
 				})
+			};
+		case DESELECT_PLACE:
+			return {
+				...state,
+				selectedPlace: null
 			};
 		default:
 			return state;
