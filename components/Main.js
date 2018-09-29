@@ -24,56 +24,28 @@ import DestinationForm from "./DestinationForm";
 import SelectedPlace from "./SelectedPlace";
 
 class Main extends Component {
-	state = {
-		places: [],
-		selectedPlace: null // holds the place object the user clicks on
-	};
-
 	handleAddPlace = placeName => {
-		const { places } = this.state;
-
-		this.setState(() => ({
-			places: places.concat({
-				key: Math.random().toString(),
-				value: placeName,
-				image: {
-					uri: "https://c1.staticflickr.com/5/4096/4744241983_34023bf303_b.jpg"
-				}
-			})
-		}));
+		this.props.dispatchAddPlace(placeName);
 	};
 
 	// delete a place
 	handleDeletePlace = () => {
-		const { places, selectedPlace } = this.state;
-
-		this.setState(() => ({
-			places: places.filter(p => {
-				return p.key !== selectedPlace.key;
-			}),
-			selectedPlace: null
-		}));
+		this.props.dispatchDeletePlace();
 	};
 
 	// close modal
 	handleCloseModal = () => {
-		this.setState(() => ({
-			selectedPlace: null
-		}));
+		this.props.dispatchDeselectPlace();
 	};
 
 	// save a selected place
 	handleSelectPlace = key => {
-		const { places } = this.state;
-		this.setState(() => ({
-			selectedPlace: places.find(p => {
-				return p.key === key;
-			})
-		}));
+		this.props.dispatchSelectPlace(key);
 	};
 
 	render() {
-		const { placeName, places, selectedPlace } = this.state;
+		const { places } = this.props;
+		const { selectedPlace } = this.props.places;
 
 		return (
 			<View style={styles.container}>
@@ -101,21 +73,19 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-	const { places, selectedPlace } = state.places;
-
 	return {
-		places: places,
-		selectedPlace: selectedPlace
+		places: state.places.places,
+		selectedPlace: state.places.selectedPlace
 	};
 };
 
 const mapDispatchToProps = dispatch => {
 	return {
-		addPlace: placeName => dispatch(addPlace(placeName)),
-		deletePlace: () => dispatch(deletePlace()),
-		selectPlace: key => dispatch(selectedPlace(key)),
-		deselectPlace: () => dispatch(deselectPlace())
+		dispatchAddPlace: placeName => dispatch(addPlace(placeName)),
+		dispatchDeletePlace: () => dispatch(deletePlace()),
+		dispatchSelectPlace: key => dispatch(selectedPlace(key)),
+		dispatchDeselectPlace: () => dispatch(deselectPlace())
 	};
 };
 
-export default Main;
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
