@@ -8,8 +8,9 @@ import {
 	StatusBar
 } from "react-native";
 import { createStore, combineReducers } from "redux";
-import { Constants } from "expo";
+import { Provider } from "react-redux";
 import placesReducer from "./reducers/places";
+import AwesomeStatusBar from "./components/AwesomeStatusBar";
 import DestinationList from "./components/DestinationList";
 import DestinationForm from "./components/DestinationForm";
 import SelectedPlace from "./components/SelectedPlace";
@@ -21,14 +22,6 @@ const rootReducer = combineReducers({
 
 // create store
 const store = createStore(rootReducer);
-
-function AwesomeStatusBar({ backgroundColor, ...props }) {
-	return (
-		<View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-			<StatusBar translucent backgroundColor={backgroundColor} {...props} />
-		</View>
-	);
-}
 
 export default class App extends Component {
 	state = {
@@ -83,20 +76,25 @@ export default class App extends Component {
 		const { placeName, places, selectedPlace } = this.state;
 
 		return (
-			<View style={styles.container}>
-				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
-				<SelectedPlace
-					selectedPlace={selectedPlace}
-					onItemDeleted={this.handleDeletePlace}
-					onModalClosed={this.handleCloseModal}
-				/>
-				<DestinationForm addPlace={this.handleAddPlace} />
-				<DestinationList
-					places={places}
-					deletePlace={this.handleDeletePlace}
-					selectPlace={this.handleSelectPlace}
-				/>
-			</View>
+			<Provider store={store}>
+				<View style={styles.container}>
+					<AwesomeStatusBar
+						backgroundColor="#5E8D48"
+						barStyle="light-content"
+					/>
+					<SelectedPlace
+						selectedPlace={selectedPlace}
+						onItemDeleted={this.handleDeletePlace}
+						onModalClosed={this.handleCloseModal}
+					/>
+					<DestinationForm addPlace={this.handleAddPlace} />
+					<DestinationList
+						places={places}
+						deletePlace={this.handleDeletePlace}
+						selectPlace={this.handleSelectPlace}
+					/>
+				</View>
+			</Provider>
 		);
 	}
 }
