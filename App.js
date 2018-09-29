@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, compose } from "redux";
 import { Provider } from "react-redux";
 // reducers
 import placesReducer from "./reducers/places";
@@ -11,8 +11,15 @@ const rootReducer = combineReducers({
 	places: placesReducer
 });
 
+let composeEnhancers = compose;
+
+// global var exposed in development only
+if (__DEV__) {
+	composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+}
+
 // create store
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeEnhancers());
 
 const App = () => {
 	return (
