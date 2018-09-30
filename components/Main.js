@@ -44,9 +44,8 @@ class Main extends Component {
 	};
 
 	render() {
-		const { places } = this.props;
-		const { selectedPlace } = this.props.places;
-
+		const { places, selectedPlace } = this.props;
+		
 		return (
 			<View style={styles.container}>
 				<AwesomeStatusBar backgroundColor="#5E8D48" barStyle="light-content" />
@@ -83,7 +82,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		dispatchAddPlace: placeName => dispatch(addPlace(placeName)),
 		dispatchDeletePlace: () => dispatch(deletePlace()),
-		dispatchSelectPlace: key => dispatch(selectedPlace(key)),
+		dispatchSelectPlace: key => dispatch(selectPlace(key)),
 		dispatchDeselectPlace: () => dispatch(deselectPlace())
 	};
 };

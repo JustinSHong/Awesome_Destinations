@@ -18,7 +18,7 @@ const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 		<Modal
 			animationType="slide"
 			transparent={false}
-			visible={selectedPlace !== null}
+			visible={selectedPlace ? true : false}
 			onRequestClose={onModalClosed}
 		>
 			<View style={styles.modalContent}>
