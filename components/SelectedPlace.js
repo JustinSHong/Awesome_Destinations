@@ -1,5 +1,6 @@
 import React from "react";
 import { Modal, View, Text, Button, StyleSheet, Image } from "react-native";
+import {Ionicons} from '@expo/vector-icons';
 
 const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 	let modalContent = null; // if user did not select anything don't show modal
@@ -24,8 +25,14 @@ const SelectedPlace = ({ onItemDeleted, onModalClosed, selectedPlace }) => {
 			<View style={styles.modalContent}>
 				{modalContent}
 				<View>
-					<Button title="Delete" color="red" onPress={onItemDeleted} />
-					<Button title="Close" onPress={onModalClosed} />
+					<View style={styles.deleteContainer}>
+						<Ionicons name='ios-close' size={30} />
+						<Button title="Delete" color="red" onPress={onItemDeleted} />
+					</View>
+					<View style={styles.closeContainer}>
+						<Ionicons name='ios-trash' size={30} />
+						<Button title="Close" onPress={onModalClosed} />
+					</View>
 				</View>
 			</View>
 		</Modal>
@@ -44,6 +51,16 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		textAlign: "center",
 		fontWeight: "bold"
+	},
+	deleteContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center'
+	},
+	closeContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center'
 	}
 });
 
